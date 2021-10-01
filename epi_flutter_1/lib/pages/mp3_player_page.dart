@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/widgets/ButtonHoverMusicPlayer.dart';
 import 'package:epi_flutter_1/widgets/drawer_music_player_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +11,34 @@ class Mp3Player extends StatefulWidget {
 class _Mp3Player extends State<Mp3Player> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    print(width);
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         title: const Text('MP3Player'),
         centerTitle: true,
-        backgroundColor: Colors.pinkAccent,
+        backgroundColor: Colors.grey,
       ),
-        drawer: const DrawerMusicPlayerWidget(),
-          body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[],
+      drawer: const DrawerMusicPlayerWidget(),
+      body: Center(
+        child: Container(
+          width: width / 1.35,
+          height: height / 1.35,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(60),
+              color: Colors.white,
+              boxShadow: [
+                new BoxShadow(
+                  blurRadius: 12,
+                  spreadRadius: 5,
+                  color: Colors.grey,
+                )
+              ]
+          ),
         ),
       ),
     );
   }
 }
-
