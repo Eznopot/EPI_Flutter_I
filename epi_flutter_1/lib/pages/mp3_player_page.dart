@@ -35,10 +35,17 @@ class _Mp3Player extends State<Mp3Player> {
                   spreadRadius: 5,
                   color: Colors.grey,
                 )
-              ]
-          ),
+              ]),
+          child: buttonsUI(),
         ),
       ),
     );
   }
+}
+
+buttonsUI() {
+  return Column(
+      children: List.generate(2, (int i) {
+    return ButtonHoverMusicPlayer();
+  }));
 }
