@@ -12,7 +12,6 @@ class _Mp3Player extends State<Mp3Player> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    print(width);
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -27,29 +26,35 @@ class _Mp3Player extends State<Mp3Player> {
           diameterRatio: 1.5,
           children: [
             Container(
-                width: width / 1.35,
-                height: height / 1.35,
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+                decoration: const BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Center(
-                    child: Image(
-                  image: AssetImage("assets/images/evanescence.jpg"),
-                  width: width / 2,
-                  height: height / 2,
-                ))),
+                child: Column(
+                  children: const [
+                    Image(
+                      fit: BoxFit.contain,
+                      image: AssetImage("assets/images/evanescence.jpg"),
+                    ),
+                    Text("Test")
+                  ],
+                )),
             Container(
-                width: width / 1.35,
-                height: height / 1.35,
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+                padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                decoration: const BoxDecoration(
                     color: Colors.grey,
                     borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Center(
-                    child: Image(
-                  image: AssetImage("assets/images/mozart_opera_rock.jpg"),
-                  width: width / 2,
-                  height: height / 2,
-                ))),
+                child: Column(
+                  children: const [
+                    Image(
+                      image: AssetImage("assets/images/mozart_opera_rock.jpg"),
+                      fit: BoxFit.contain,
+                    ),
+                    Text("Mozart L'Opéra Rock")
+                  ],
+                ))
           ]),
     );
   }
