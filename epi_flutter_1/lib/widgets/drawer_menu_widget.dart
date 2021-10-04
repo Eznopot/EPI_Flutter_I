@@ -21,7 +21,7 @@ class DrawerMenuWidget extends StatelessWidget {
               color: const Color.fromRGBO(255, 255, 255, 1),
               hoverColor: const Color.fromRGBO(250, 250, 250, 1),
               onClicked: () {
-                Navigator.of(context).pushNamed("/mp3player");
+                Navigator.of(context).pushNamed("/mp3playerList");
               }
             ),
           ],
