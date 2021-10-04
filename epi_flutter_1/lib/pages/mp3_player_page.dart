@@ -10,7 +10,8 @@ class Mp3Player extends StatefulWidget {
 class _Mp3Player extends State<Mp3Player> {
   @override
   Widget build(BuildContext context) {
-    List<String> title_musics = ["embrace", "isolated", "prelude"];
+    List<String> titleMusics = ["embrace", "isolated", "prelude", "yuku_naghawo"];
+    List<String> music = ["embrace.mp3", "isolated.mp3", "prelude.mp3", "yuku-naghawo.mp3"];
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -19,29 +20,34 @@ class _Mp3Player extends State<Mp3Player> {
         backgroundColor: Colors.grey,
       ),
       drawer: const DrawerMusicPlayerWidget(),
-      body: ListWheelScrollView(
+      body: ListView(
           itemExtent: 235,
           physics: const FixedExtentScrollPhysics(),
-          offAxisFraction: -0.5,
-          diameterRatio: 1.5,
+          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
           children: [
-            for (var i in title_musics)
+            for (var i in titleMusics)
             Center(
-              child: Container(
-                  margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                  padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-                  decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.all(Radius.circular(30))),
-                  child: Column(
-                    children: [
-                      const Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage("assets/images/musical_note.jpg"),
-                      ),
-                      Text(i)
-                    ],
-                  )),
+              child: InkWell (
+                onTap: () {
+                  print("Tapped a Container");
+                },
+                child: Container(
+                    margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                    padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
+                    decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.all(Radius.circular(30))),
+                    child: Column(
+                      children: [
+                        const Image(
+                          fit: BoxFit.contain,
+                          image: AssetImage("assets/images/musical_note.jpg"),
+                        ),
+                        Text(i)
+                      ],
+                    )
+                ),
+              )
             ),
           ]),
     );
