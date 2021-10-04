@@ -10,8 +10,7 @@ class Mp3Player extends StatefulWidget {
 class _Mp3Player extends State<Mp3Player> {
   @override
   Widget build(BuildContext context) {
-    MediaQueryData queryData;
-    queryData = MediaQuery.of(context);
+    List<String> title_musics = ["embrace", "isolated", "prelude"];
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -26,6 +25,7 @@ class _Mp3Player extends State<Mp3Player> {
           offAxisFraction: -0.5,
           diameterRatio: 1.5,
           children: [
+            for (var i in title_musics)
             Center(
               child: Container(
                   margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
@@ -34,47 +34,15 @@ class _Mp3Player extends State<Mp3Player> {
                       color: Colors.grey,
                       borderRadius: BorderRadius.all(Radius.circular(30))),
                   child: Column(
-                    children: const [
-                      Image(
+                    children: [
+                      const Image(
                         fit: BoxFit.contain,
                         image: AssetImage("assets/images/musical_note.jpg"),
                       ),
-                      Text("Embrace")
+                      Text(i)
                     ],
                   )),
             ),
-            Center(
-                child: Container(
-                    margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-                    padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: Column(
-                      children: const [
-                        Image(
-                          image: AssetImage("assets/images/musical_note.jpg"),
-                          fit: BoxFit.contain,
-                        ),
-                        Text("isolated")
-                      ],
-                    ))),
-            Center(
-                child: Container(
-                    margin: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
-                    padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                    child: Column(
-                      children: const [
-                        Image(
-                          image: AssetImage("assets/images/musical_note.jpg"),
-                          fit: BoxFit.contain,
-                        ),
-                        Text("Prelude")
-                      ],
-                    ))),
           ]),
     );
   }
