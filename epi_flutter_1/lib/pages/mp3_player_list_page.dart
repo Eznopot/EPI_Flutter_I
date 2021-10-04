@@ -1,5 +1,5 @@
 import 'package:epi_flutter_1/widgets/drawer_music_player_widget.dart';
-import 'package:epi_flutter_1/assets/constants.dart' as constant;
+import 'package:epi_flutter_1/constants.dart' as constant;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

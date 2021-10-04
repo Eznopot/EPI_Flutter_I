@@ -1,7 +1,8 @@
 import 'package:epi_flutter_1/widgets/drawer_music_player_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:epi_flutter_1/assets/constants.dart' as constant;
+import 'package:just_audio/just_audio.dart';
+import 'package:epi_flutter_1/constants.dart' as constant;
 
 class Mp3Player extends StatefulWidget {
   const Mp3Player({Key? key}) : super(key: key);
