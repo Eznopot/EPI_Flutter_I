@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/pages/form.dart';
 import 'package:epi_flutter_1/pages/mp3_player_list_page.dart';
 import 'package:epi_flutter_1/pages/mp3_player_page.dart';
 import "package:flutter/material.dart";
@@ -14,6 +15,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => Mp3PlayerList());
       case "/mp3player":
         return MaterialPageRoute(builder: (_) => Mp3Player());
+      case "/FormPage":
+        return MaterialPageRoute(builder: (_) => FormPage());
       default:
         return _errorRoute();
     }
