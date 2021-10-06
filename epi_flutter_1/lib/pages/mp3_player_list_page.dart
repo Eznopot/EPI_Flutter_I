@@ -29,13 +29,15 @@ class _Mp3PlayerList extends State<Mp3PlayerList> {
         padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
         controller: _controller,
         children: <Widget>[
-          for (int i = 0; i < constant.musics.length; ++i)
+          for (int i = 0; i < constant.musicList.length; ++i)
             Center(
                 child: InkWell(
               onTap: () {
-                constant.music = constant.musics[i];
-                print(constant.music);
-                Navigator.of(context).pushNamed("/mp3player");
+                constant.musicTitle = constant.musicList[i];
+                constant.musicImage = constant.imageList[i];
+                constant.musicPath = constant.musicPathList[i];
+                print(constant.index);
+                Navigator.of(context).pushNamed("/mp3player", );
               },
               child: Container(
                 margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
