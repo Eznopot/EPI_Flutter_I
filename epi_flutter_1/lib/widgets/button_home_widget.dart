@@ -6,10 +6,12 @@ class buttonCard extends StatelessWidget {
     Key? key,
     required this.name,
     required this.route,
+    required this.color,
     required this.imageString,
   }) : super(key: key);
   final String route;
   final String name;
+  final Color color;
   final String imageString;
 
   @override
@@ -18,6 +20,7 @@ class buttonCard extends StatelessWidget {
       children: <Widget> [
         Card(
             semanticContainer: true,
+            elevation: 6,
             clipBehavior: Clip.antiAliasWithSaveLayer,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.0),
@@ -29,12 +32,13 @@ class buttonCard extends StatelessWidget {
                 Navigator.of(context).pushNamed(route);
               },
               child: SizedBox(
-                width: 200,
-                height : 200,
+                width: 136,
+                height : 136,
                 child : Container (
                   padding: const EdgeInsets.all(30.0),
                   child : Image.network(
                     imageString,
+                    color: color,
                     fit: BoxFit.contain,
                   ),
                 )
@@ -43,7 +47,7 @@ class buttonCard extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Center(
-          child: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
+          child: Text(name, style: const TextStyle(fontSize: 16)),
         )
       ],
     );

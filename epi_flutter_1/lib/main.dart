@@ -1,9 +1,19 @@
 import 'package:epi_flutter_1/routes/routes.dart';
 import 'package:epi_flutter_1/widgets/button_home_widget.dart';
-import 'package:epi_flutter_1/widgets/drawer_menu_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+  )
+  );
+  runApp(
+    MyApp()
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -14,6 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter I',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        fontFamily: 'nexa',
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/',
@@ -35,25 +46,26 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ListView(
-          children: const <Widget> [
-            Center (
+      body: SafeArea(
+        child: Column(
+          children: <Widget> [
+            const SizedBox(height: 16),
+            const Center (
               child : Text("Swissapp", style : TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
             ),
-            SizedBox(height: 32),
-            Center(
-                child: buttonCard(name: 'Profile', route: '/profile', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png')
+            const SizedBox(height: 48),
+            GridView.count (
+              primary: false,
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(6),
+              crossAxisCount: 2,
+              children : const <Widget> [
+                buttonCard(name: 'Profile', route: '/profile', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png', color : Colors.pink),
+                buttonCard(name: 'mp3player', route: '/mp3playerList', imageString: 'https://www.pngrepo.com/download/51094/musical-note.png', color : Colors.amber),
+                buttonCard(name: 'Contact', route: '/contact', imageString: 'https://icons.veryicon.com/png/o/education-technology/ui-icon/contacts-77.png', color : Colors.blueAccent),
+              ]
             ),
-            SizedBox(height: 10),
-            Center(
-              child: buttonCard(name: 'mp3player', route: '/mp3playerList', imageString: 'https://www.pngrepo.com/download/51094/musical-note.png')
-            ),
-            SizedBox(height: 10),
-            Center(
-                child: buttonCard(name: 'Contact', route: '/contact', imageString: 'https://icons.veryicon.com/png/o/education-technology/ui-icon/contacts-77.png')
-            ),
-            SizedBox(height: 10),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
