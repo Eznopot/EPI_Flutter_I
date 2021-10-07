@@ -1,11 +1,13 @@
 import 'package:epi_flutter_1/pages/mp3_player_list_page.dart';
 import 'package:epi_flutter_1/pages/mp3_player_page.dart';
+import 'package:epi_flutter_1/pages/profile_page.dart';
 import "package:flutter/material.dart";
 import "package:epi_flutter_1/main.dart";
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
+    final name = settings.name;
 
     switch (settings.name) {
       case "/":
@@ -14,6 +16,8 @@ class Routes {
         return MaterialPageRoute(builder: (_) => Mp3PlayerList());
       case "/mp3player":
         return MaterialPageRoute(builder: (_) => Mp3Player());
+      case "/profile":
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
       default:
         return _errorRoute();
     }
