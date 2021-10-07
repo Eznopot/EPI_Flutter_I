@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter I',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        //brightness: Brightness.dark,
         fontFamily: 'nexa',
         primarySwatch: Colors.blue,
       ),
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         if (result is String) {
           name = result;
         } else {
+          name = "";
           print("lauch: form");
           //TODO: Launch form
         }
@@ -65,12 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget> [
             const SizedBox(height: 16),
-            const Center (
-              child : Text("Swissapp", style : TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
+            Row(
+              children: <Widget> [
+                  Expanded(
+                    child: IconButton(
+                      icon: const Icon(Icons.settings),
+                      onPressed: () {},
+                    ),
+                  ),
+                  const Spacer(),
+                  const Text("Swissapp", style : TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
+                  const Spacer(flex: 2),
+                ]
             ),
             const SizedBox(height: 16),
             Center(
-              child : SizedBox(height: 1, width: MediaQuery.of(context).size.width * 0.80,
+              child : SizedBox(height: 1, width: MediaQuery.of(context).size.width * 0.85,
                 child : Container(
                   color: Colors.black,
                 )
@@ -78,8 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 32),
             SizedBox (
-              width: MediaQuery.of(context).size.width * 0.80,
-              child : Text("Hello $name", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+              width: MediaQuery.of(context).size.width * 0.90,
+              child : Text("Hello $name", textAlign: TextAlign.left, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             ),
             const SizedBox(height: 24),
             GridView.count (
