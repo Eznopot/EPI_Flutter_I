@@ -26,60 +26,96 @@ class _AudioFileState extends State<AudioFile> {
     super.initState();
     audioPlayer = AudioPlayer();
     audioCache = AudioCache(fixedPlayer: audioPlayer);
-
   }
 
   Widget btnStart() {
-    return Row(
+    return Column(
       children: [
-        IconButton(
-          onPressed: () {
-            if (!isPlaying) {
-              audioCache.play(constant.musicPath);
-              setState(() {
-                playBtn = _icons[0];
-                isPlaying = true;
-              });
-            } else {
-              audioPlayer.pause();
-              setState(() {
-                playBtn = _icons[1];
-                isPlaying = false;
-              });
-            }
-          },
-          icon: Icon(playBtn),
+        Text(
+          constant.musicTitle,
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  audioPlayer.stop();
+                  if (constant.index >= 1) {
+                    constant.musicTitle = constant.musicList[constant.index - 1];
+                    constant.musicPath = constant.musicPathList[constant.index - 1];
+                    constant.index -= 1;
+                    playBtn = _icons[1];
+                    isPlaying = false;
+                  }
+                });
+              },
+              icon: const Icon(Icons.skip_previous),
+            ),
+            IconButton(
+              onPressed: () {
+                if (!isPlaying) {
+                  audioCache.play(constant.musicPath);
+                  setState(() {
+                    playBtn = _icons[0];
+                    isPlaying = true;
+                  });
+                } else {
+                  audioPlayer.pause();
+                  setState(() {
+                    playBtn = _icons[1];
+                    isPlaying = false;
+                  });
+                }
+              },
+              icon: Icon(playBtn),
+            ),
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  audioPlayer.stop();
+                  if (constant.index < constant.musicList.length) {
+                    constant.musicTitle = constant.musicList[constant.index + 1];
+                    constant.musicPath = constant.musicPathList[constant.index + 1];
+                    constant.index += 1;
+                    playBtn = _icons[1];
+                    isPlaying = false;
+                  }
+                });
+              },
+              icon: const Icon(Icons.skip_next),
+            ),
+          ],
         ),
       ],
     );
   }
 
   Widget loadAsset() {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          btnStart(),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        btnStart(),
+      ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Padding(
-              padding: const EdgeInsets.only(left :20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
           ),
-          loadAsset(),
-        ],
-      ),
+        ),
+        loadAsset(),
+      ],
     );
   }
 }

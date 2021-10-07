@@ -50,13 +50,6 @@ class _Mp3Player extends State<Mp3Player> {
                     SizedBox(
                       height: screenHeight * 0.15,
                     ),
-                    Text(
-                      constant.musicTitle,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     AudioFile()
                   ],
                 ),
