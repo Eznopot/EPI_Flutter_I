@@ -3,6 +3,7 @@ import 'package:epi_flutter_1/widgets/button_home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -42,6 +43,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String? name;
+  @override
+  void initState() {
+    _readData().then((result) {
+      setState(() {
+        if (result is String) {
+          name = result;
+        } else {
+          print("lauch: form");
+          //TODO: Launch form
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +68,20 @@ class _MyHomePageState extends State<MyHomePage> {
             const Center (
               child : Text("Swissapp", style : TextStyle(fontWeight: FontWeight.bold, fontSize: 32)),
             ),
-            const SizedBox(height: 48),
+            const SizedBox(height: 16),
+            Center(
+              child : SizedBox(height: 1, width: MediaQuery.of(context).size.width * 0.80,
+                child : Container(
+                  color: Colors.black,
+                )
+              )
+            ),
+            const SizedBox(height: 32),
+            SizedBox (
+              width: MediaQuery.of(context).size.width * 0.80,
+              child : Text("Hello $name", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            ),
+            const SizedBox(height: 24),
             GridView.count (
               primary: false,
               scrollDirection: Axis.vertical,
@@ -71,4 +99,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Future<String?> _readData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final name = prefs.getString("name");
+    if (name == null) {
+      return null;
+    }
+    return name;
+  }
+
 }
