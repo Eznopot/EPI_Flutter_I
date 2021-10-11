@@ -31,7 +31,17 @@ class DrawerMenuWidget extends StatelessWidget {
               hoverColor: const Color.fromRGBO(250, 250, 250, 1),
               onClicked: () {
                 Navigator.of(context).pushNamed("/mp3playerList");
-              }
+              },
+            ),
+            const SizedBox(height: 12),
+            TileMenu(
+              text:"Form Page",
+              icon: Icons.people,
+              color: const Color.fromRGBO(255, 255, 255, 1),
+              hoverColor: const Color.fromRGBO(250, 250, 250, 1),
+              onClicked: () {
+                Navigator.of(context).pushNamed("/FormPage");
+              },
             ),
           ],
         ),

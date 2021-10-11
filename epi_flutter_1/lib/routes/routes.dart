@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/pages/form.dart';
 import 'package:epi_flutter_1/pages/mp3_player_list_page.dart';
 import 'package:epi_flutter_1/pages/mp3_player_page.dart';
 import 'package:epi_flutter_1/pages/profile_page.dart';
@@ -21,6 +22,8 @@ class Routes {
           return MaterialPageRoute(builder: (_) => const ProfilePage());
         }
         return _errorRoute();
+      case "/FormPage":
+        return MaterialPageRoute(builder: (_) => FormPage());
       default:
         return _errorRoute();
     }
