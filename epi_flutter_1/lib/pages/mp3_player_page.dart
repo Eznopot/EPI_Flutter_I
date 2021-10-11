@@ -1,5 +1,5 @@
 import 'package:epi_flutter_1/audio_file.dart';
-import 'package:epi_flutter_1/widgets/drawer_music_player_widget.dart';
+import 'package:epi_flutter_1/widgets/drawer_menu_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:epi_flutter_1/constants.dart' as constant;
@@ -23,7 +23,7 @@ class _Mp3Player extends State<Mp3Player> {
         centerTitle: true,
         backgroundColor: Colors.grey,
       ),
-      drawer: const DrawerMusicPlayerWidget(),
+      drawer: const DrawerMenuWidget(),
       body: Stack(
         children: [
           Positioned(
@@ -49,13 +49,6 @@ class _Mp3Player extends State<Mp3Player> {
                   children: [
                     SizedBox(
                       height: screenHeight * 0.15,
-                    ),
-                    Text(
-                      constant.musicTitle,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                     AudioFile()
                   ],
