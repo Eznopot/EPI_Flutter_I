@@ -17,7 +17,10 @@ class Routes {
       case "/mp3player":
         return MaterialPageRoute(builder: (_) => Mp3Player());
       case "/profile":
-        return MaterialPageRoute(builder: (_) => const ProfilePage());
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => const ProfilePage());
+        }
+        return _errorRoute();
       default:
         return _errorRoute();
     }

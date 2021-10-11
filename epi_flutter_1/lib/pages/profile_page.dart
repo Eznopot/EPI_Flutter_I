@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
+  const ProfilePage({Key? key, this.name}) : super(key: key);
+  final String? name;
 
   @override
   State<ProfilePage> createState() => _ProfilePage();
@@ -38,11 +38,11 @@ class _ProfilePage extends State<ProfilePage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14.0),
                   ),
-                  child : SizedBox (
+                  child : SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.6,
-                    child: Column (
-                      children: [
+                    child: Column(
+                      children: const [
                         SizedBox(height : 12),
                       ],
                     ),
