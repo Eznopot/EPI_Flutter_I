@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
           name = result;
         } else {
           name = "";
-          Navigator.of(context).pushNamed("/profile");
+          Navigator.of(context).pushNamed("/ProfilePage");
           print("lauch: form");
           //TODO: Launch form
         }
