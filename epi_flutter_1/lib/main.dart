@@ -12,7 +12,7 @@ void main() {
   )
   );
   runApp(
-    MyApp()
+    const MyApp()
   );
 }
 
@@ -45,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String? name;
+
   @override
   void initState() {
     _readData().then((result) {
@@ -53,12 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
           name = result;
         } else {
           name = "";
-          Navigator.of(context).pushNamed("/profile");
+          Navigator.of(context).pushNamed("/takePicture");
           print("lauch: form");
           //TODO: Launch form
         }
       });
     });
+    super.initState();
   }
 
   @override

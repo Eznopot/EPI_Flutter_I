@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FormPage extends StatefulWidget {
+  const FormPage({Key? key}) : super(key: key);
+
   @override
   State<FormPage> createState() => _FormPageState();
 }

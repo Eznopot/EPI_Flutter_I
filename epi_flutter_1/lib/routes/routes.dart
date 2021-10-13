@@ -1,14 +1,15 @@
+import 'package:epi_flutter_1/pages/display_picture_page.dart';
 import 'package:epi_flutter_1/pages/form.dart';
 import 'package:epi_flutter_1/pages/mp3_player_list_page.dart';
 import 'package:epi_flutter_1/pages/mp3_player_page.dart';
 import 'package:epi_flutter_1/pages/profile_page.dart';
+import 'package:epi_flutter_1/pages/take_pictures_page.dart';
 import "package:flutter/material.dart";
 import "package:epi_flutter_1/main.dart";
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-    final name = settings.name;
 
     switch (settings.name) {
       case "/":
@@ -19,11 +20,18 @@ class Routes {
         return MaterialPageRoute(builder: (_) => Mp3Player());
       case "/profile":
         if (args is String) {
-          return MaterialPageRoute(builder: (_) => const ProfilePage());
+          return MaterialPageRoute(builder: (_) => ProfilePage(name : args));
         }
-        return _errorRoute();
+        return MaterialPageRoute(builder: (_) => const ProfilePage());
       case "/FormPage":
         return MaterialPageRoute(builder: (_) => FormPage());
+      case "/takePicture":
+        return MaterialPageRoute(builder: (_) => TakePicturePage());
+      case "/displayPicture":
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => DisplayPicturePage(imagePath : args));
+        }
+        return _errorRoute();
       default:
         return _errorRoute();
     }
