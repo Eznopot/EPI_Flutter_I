@@ -52,9 +52,12 @@ class _Mp3PlayerList extends State<Mp3PlayerList> {
                       )
                     ],
                     borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: const Image(
-                  fit: BoxFit.contain,
-                  image: AssetImage("assets/images/musical_note.jpg"),
+                child: Row(
+                  children: [
+                    const Image(fit: BoxFit.contain,
+                        image: AssetImage("assets/images/musical_note.jpg")),
+                    Text(constant.musicList[i])
+                  ],
                 ),
               ),
             )),
