@@ -20,7 +20,7 @@ class RoundImage extends StatelessWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-            image: NetworkImage(imageString),
+            image: AssetImage(imageString),
             fit: BoxFit.fill
         ),
       ),

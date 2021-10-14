@@ -12,6 +12,9 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
+  late final tmpFinal;
+  String? imagePath;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,9 +36,14 @@ class _FormPageState extends State<FormPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget> [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  const RoundImage(width: 200, height: 200, imageString: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                  RoundImage(width: 200, height: 200, imageString: imagePath ?? 'assets/images/blank-profile-picture.jpg'),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  ButtonDefaultWidget(text: 'Take a picture', onPressed: (){}),
+                  ButtonDefaultWidget(text: 'Take a picture', onPressed: () async {
+                    tmpFinal = await Navigator.of(context).pushNamed("/takePicture");
+                    imagePath = tmpFinal;
+                    print(imagePath);
+                    (context as Element).reassemble();
+                  }),
                   Row(
                     children: const <Widget> [
                       Expanded(child: NewForm(name: 'First Name')),
@@ -47,8 +55,12 @@ class _FormPageState extends State<FormPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [
-                      ButtonDefaultWidget(text: 'Back', onPressed: (){}),
-                      ButtonDefaultWidget(text: 'Save', onPressed: (){}),
+                      ButtonDefaultWidget(text: 'Back', onPressed: (){
+                        Navigator.of(context).pop();
+                      }),
+                      ButtonDefaultWidget(text: 'Save', onPressed: (){
+                        Navigator.of(context).pop();
+                      }),
                     ],
                   ),
                   SizedBox(

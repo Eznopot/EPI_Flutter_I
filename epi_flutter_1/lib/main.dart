@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           name = result;
         } else {
           name = "";
-          Navigator.of(context).pushNamed("/ProfilePage");
+          Navigator.of(context).pushNamed("/FormPage");
           print("lauch: form");
           //TODO: Launch form
         }
@@ -104,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(6),
               crossAxisCount: 2,
               children : const <Widget> [
-                buttonCard(name: 'Profile', route: '/profile', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png', color : Colors.pink),
+                buttonCard(name: 'Profile', route: '/ProfilePage', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png', color : Colors.pink),
                 buttonCard(name: 'mp3player', route: '/mp3playerList', imageString: 'https://www.pngrepo.com/download/51094/musical-note.png', color : Colors.amber),
                 buttonCard(name: 'Contact', route: '/contact', imageString: 'https://icons.veryicon.com/png/o/education-technology/ui-icon/contacts-77.png', color : Colors.blueAccent),
               ]

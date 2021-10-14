@@ -79,7 +79,6 @@ class _TakePicturePage extends State<TakePicturePage> {
       "/displayPicture", arguments : image.path
     );
     if (result != null) {
-      print(result);
       Navigator.pop(context, result);
     }
   }
