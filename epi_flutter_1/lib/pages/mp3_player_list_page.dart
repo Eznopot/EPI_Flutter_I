@@ -38,7 +38,7 @@ class _Mp3PlayerList extends State<Mp3PlayerList> {
                 constant.musicPath = constant.musicPathList[i];
                 constant.index = i;
                 print(constant.index);
-                Navigator.of(context).pushNamed("/mp3player", );
+                Navigator.of(context).pushNamed("/mp3player");
               },
               child: Container(
                 margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
