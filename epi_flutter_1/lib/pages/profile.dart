@@ -33,20 +33,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   const RoundImage(width: 200, height: 200, imageString: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  ButtonDefaultWidget(text: 'Take a picture', onPressed: (){}),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const <Widget> [
-                      Expanded(child: NewForm(name: 'First Name')),
-                      Expanded(child: NewForm(name: 'Last Name')),
+                      Text('First Name'),
+                      Text('Last Name'),
                     ],
                   ),
-                  const NewForm(name: 'Number'),
-                  const NewForm(name: 'About', maxLines: 5),
+                  const Text('04.93.59.89.68'),
+                  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum a arcu cursus vitae congue mauris rhoncus. Malesuada bibendum arcu vitae elementum curabitur. Magna fermentum iaculis eu non. Pellentesque nec nam aliquam sem et tortor consequat. Congue mauris rhoncus aenean vel elit scelerisque mauris. Fames ac turpis egestas integer eget aliquet nibh praesent tristique. Purus non enim praesent elementum.'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [
                       ButtonDefaultWidget(text: 'Back', onPressed: (){}),
-                      ButtonDefaultWidget(text: 'Save', onPressed: (){}),
                     ],
                   ),
                   SizedBox(
