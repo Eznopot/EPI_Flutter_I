@@ -1,5 +1,6 @@
 import 'package:epi_flutter_1/pages/display_picture_page.dart';
 import 'package:epi_flutter_1/pages/form_page.dart';
+import 'package:epi_flutter_1/pages/list_contactes.dart';
 import 'package:epi_flutter_1/pages/mp3_player_list_page.dart';
 import 'package:epi_flutter_1/pages/mp3_player_page.dart';
 import 'package:epi_flutter_1/pages/profile_page.dart';
@@ -25,6 +26,10 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const FormPage());
       case "/takePicture":
         return MaterialPageRoute(builder: (_) => TakePicturePage());
+
+      case "/ListContactesPage":
+        return MaterialPageRoute(builder: (_) => ListContactesPage());
+
       case "/displayPicture":
         if (args is String) {
           return MaterialPageRoute(builder: (_) => DisplayPicturePage(imagePath : args));
