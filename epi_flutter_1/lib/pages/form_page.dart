@@ -15,6 +15,7 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   late final tmpFinal;
   String? imagePath;
+  bool cached = false;
   final myControllerName = TextEditingController();
   final myControllerLastName = TextEditingController();
   final myControllerDescription = TextEditingController();
@@ -41,11 +42,12 @@ class _FormPageState extends State<FormPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget> [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  RoundImage(width: 200, height: 200, imageString: imagePath ?? 'assets/images/blank-profile-picture.jpg'),
+                  RoundImage(width: 200, height: 200, imageString: imagePath ?? 'assets/images/blank-profile-picture.jpg', cached: cached,),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   ButtonDefaultWidget(text: 'Take a picture', onPressed: () async {
                     tmpFinal = await Navigator.of(context).pushNamed("/takePicture");
                     imagePath = tmpFinal;
+                    cached = true;
                     (context as Element).reassemble();
                   }),
                   Row(

@@ -12,7 +12,6 @@ class ListContactesPage extends StatefulWidget {
 }
 
 class _ListContactesPageState extends State<ListContactesPage> {
-//  final List<List<String>> entries = List<List<String>>[['', ''], ['', '']];
   List<DataProfile>? profiles;
 
   @override
@@ -78,7 +77,18 @@ class _ListContactesPageState extends State<ListContactesPage> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {Navigator.of(context).pushNamed('/FormPage');},
+          onPressed: () {
+            Navigator.of(context).pushNamed('/FormPage').then((value) => {
+              setState(() {
+                DataProfile? profile = value as DataProfile;
+                profiles!.add(profile);
+                CacheManager.writeData(profiles).then((_) {
+                  (context as Element).reassemble();
+                  print("writed");
+                });
+              })
+            });
+          },
           child: const Icon(Icons.add_box),
           backgroundColor: Colors.blueAccent,
         ),

@@ -15,6 +15,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,7 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget> [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  RoundImage(width: 200, height: 200, imageString: widget.profile.getImagePath() ?? "assets/images/blank-profile-picture.jpg"),
+                  RoundImage(width: 200, height: 200, imageString: widget.profile.getImagePath() ?? "assets/images/blank-profile-picture.jpg", cached: widget.profile.getImagePath() != null ? true : false),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

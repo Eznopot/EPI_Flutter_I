@@ -59,8 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
         if (result == null) {
           Navigator.of(context).pushNamed("/FormPage").then((value) => {
             setState(() {
+              List<DataProfile>? tmp = [];
               profile = value as DataProfile;
-              CacheManager.writeData(profile!).then((_) {
+              if (profile != null) {
+                tmp.add(profile!);
+              }
+              CacheManager.writeData(tmp).then((_) {
               });
               name = profile!.getFirstName()!;
               (context as Element).reassemble();

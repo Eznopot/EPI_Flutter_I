@@ -20,10 +20,15 @@ class CacheManager {
     }
   }
 
-  static Future writeData(DataProfile profile) async {
+  static Future writeData(List<DataProfile>? profiles) async {
     final prefs = await SharedPreferences.getInstance();
-    List<String>? list = [jsonEncode(profile.toJson())];
-    print(profile.toJson());
+    List<String>? list = [];
+    if (profiles != null) {
+      for (var profile in profiles) {
+        print(profile.toJson());
+        list.add(jsonEncode(profile.toJson()));
+      }
+    }
     prefs.setStringList("profile", list);
   }
 }
