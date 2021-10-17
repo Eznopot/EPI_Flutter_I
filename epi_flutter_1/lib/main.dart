@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:epi_flutter_1/routes/routes.dart';
+import 'package:epi_flutter_1/services/cache_manager.dart';
 import 'package:epi_flutter_1/widgets/button_home_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'models/data_profile.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -12,7 +17,7 @@ void main() {
   )
   );
   runApp(
-    MyApp()
+    const MyApp()
   );
 }
 
@@ -44,19 +49,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? name;
+  DataProfile? profile;
+  String name = "";
 
   @override
   void initState() {
-    _readData().then((result) {
+    CacheManager.readData("profile").then((result) {
       setState(() {
-        if (result is String) {
-          name = result;
+        if (result == null) {
+          Navigator.of(context).pushNamed("/FormPage").then((value) => {
+            setState(() {
+              profile = value as DataProfile;
+              CacheManager.writeData(profile!).then((_) {
+              });
+              name = profile!.getFirstName()!;
+              (context as Element).reassemble();
+            })
+          });
         } else {
-          name = "";
-          Navigator.of(context).pushNamed("/ListContactesPage");
-          print("lauch: form");
-          //TODO: Launch form
+          profile = result[0];
+          print(profile!.getImagePath());
+        }
+        if (profile?.getFirstName() != null) {
+          name = profile!.getFirstName()!;
         }
       });
     });
@@ -103,10 +118,10 @@ class _MyHomePageState extends State<MyHomePage> {
               shrinkWrap: true,
               padding: const EdgeInsets.all(6),
               crossAxisCount: 2,
-              children : const <Widget> [
-                buttonCard(name: 'Profile', route: '/ProfilePage', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png', color : Colors.pink),
-                buttonCard(name: 'mp3player', route: '/mp3playerList', imageString: 'https://www.pngrepo.com/download/51094/musical-note.png', color : Colors.amber),
-                buttonCard(name: 'Contact', route: '/contact', imageString: 'https://icons.veryicon.com/png/o/education-technology/ui-icon/contacts-77.png', color : Colors.blueAccent),
+              children : <Widget> [
+                buttonCard(name: 'Profile', route: '/ProfilePage', imageString: 'http://cdn.onlinewebfonts.com/svg/img_364496.png', color : Colors.pink, profile: profile),
+                const buttonCard(name: 'mp3player', route: '/mp3playerList', imageString: 'https://www.pngrepo.com/download/51094/musical-note.png', color : Colors.amber),
+                const buttonCard(name: 'Contact', route: '/ListContactesPage', imageString: 'https://icons.veryicon.com/png/o/education-technology/ui-icon/contacts-77.png', color : Colors.blueAccent),
               ]
             ),
           ],
@@ -114,14 +129,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-
-  Future<String?> _readData() async {
-    final prefs = await SharedPreferences.getInstance();
-    final name = prefs.getString("name");
-    if (name == null) {
-      return null;
-    }
-    return name;
-  }
-
 }

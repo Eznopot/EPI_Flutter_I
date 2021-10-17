@@ -6,16 +6,19 @@ class NewForm extends StatelessWidget {
     Key? key,
     required this.name,
     this.maxLines,
+    this.myController
   }) : super(key: key);
 
   final String name;
   final int? maxLines;
+  final TextEditingController? myController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.all(15),
         child :TextFormField(
+          controller: myController,
           maxLines: maxLines ?? 1,
           decoration: InputDecoration(
             hintText: name,

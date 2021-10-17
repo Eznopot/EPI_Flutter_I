@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,11 +9,13 @@ class buttonCard extends StatelessWidget {
     required this.route,
     required this.color,
     required this.imageString,
+    this.profile,
   }) : super(key: key);
   final String route;
   final String name;
   final Color color;
   final String imageString;
+  final DataProfile? profile;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,11 @@ class buttonCard extends StatelessWidget {
             child: InkWell(
               splashColor: Colors.blue.withAlpha(30),
               onTap: () {
-                Navigator.of(context).pushNamed(route);
+                if (profile != null) {
+                  Navigator.of(context).pushNamed(route, arguments: profile);
+                } else {
+                  Navigator.of(context).pushNamed(route);
+                }
               },
               child: SizedBox(
                 width: 136,

@@ -1,3 +1,5 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
+import 'package:epi_flutter_1/services/cache_manager.dart';
 import 'package:epi_flutter_1/widgets/button_list_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,17 @@ class ListContactesPage extends StatefulWidget {
 
 class _ListContactesPageState extends State<ListContactesPage> {
 //  final List<List<String>> entries = List<List<String>>[['', ''], ['', '']];
+  List<DataProfile>? profiles;
+
+  @override
+  void initState() {
+    CacheManager.readData("profile").then((result) {
+      setState(() {
+        profiles = result;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +44,7 @@ class _ListContactesPageState extends State<ListContactesPage> {
               width: MediaQuery.of(context).size.width * 0.8,
               child: ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount: 10,
+                itemCount: profiles != null ? profiles!.length : 0,
                 itemBuilder: (BuildContext context, int index){
                   return Container(
                     decoration: BoxDecoration(
@@ -46,16 +59,15 @@ class _ListContactesPageState extends State<ListContactesPage> {
                     height: 50,
                     child: InkWell(
                       onTap: () {
-                        onPressed: () {
-                          Navigator.of(context).pushNamed('/FormPage');
-                        };
+                        if (profiles![index] != null) {
+                          Navigator.of(context).pushNamed("/ProfilePage", arguments : profiles![index]);
+                        }
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget> [
-                          Text('First Name : Mano'),
-                          Text('Last Name : Baffie'),
-                          Text('Number : 04.93.59.89.68'),
+                          Text('First Name :' + profiles![index].firstName!),
+                          Text('Last Name :' + profiles![index].lastName!),
                         ]
                       ),
                     ),

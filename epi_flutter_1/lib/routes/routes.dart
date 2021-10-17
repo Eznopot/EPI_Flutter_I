@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:epi_flutter_1/pages/display_picture_page.dart';
 import 'package:epi_flutter_1/pages/form_page.dart';
 import 'package:epi_flutter_1/pages/list_contactes.dart';
@@ -21,7 +22,10 @@ class Routes {
       case "/mp3player":
         return MaterialPageRoute(builder: (_) => Mp3Player());
       case "/ProfilePage":
-        return MaterialPageRoute(builder: (_) => ProfilePage());
+        if (args is DataProfile) {
+          return MaterialPageRoute(builder: (_) => ProfilePage(profile: args));
+        }
+        return _errorRoute();
       case "/FormPage":
         return MaterialPageRoute(builder: (_) => const FormPage());
       case "/takePicture":

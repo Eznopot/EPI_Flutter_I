@@ -23,7 +23,6 @@ class DisplayPicturePage extends StatelessWidget {
                 child : Container(
                   child: TextButton(
                     onPressed: () {
-
                       Navigator.pop(context);
                     },
                     child: const Text("Cancel"),

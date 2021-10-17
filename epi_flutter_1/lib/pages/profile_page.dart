@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:epi_flutter_1/widgets/button_default_widget.dart';
 import 'package:epi_flutter_1/widgets/new_form_widget.dart';
 import 'package:epi_flutter_1/widgets/round_image.dart';
@@ -5,6 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key? key, required this.profile}) : super(key: key);
+
+  final DataProfile profile;
+
   @override
   State<ProfilePage> createState() => _ProfilePageState();
 }
@@ -31,17 +36,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget> [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                  const RoundImage(width: 200, height: 200, imageString: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                  RoundImage(width: 200, height: 200, imageString: widget.profile.getImagePath() ?? "assets/images/blank-profile-picture.jpg"),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const <Widget> [
-                      Text('First Name'),
-                      Text('Last Name'),
+                    children: <Widget> [
+                      Text(widget.profile.getFirstName() ?? "M."),
+                      Text(widget.profile.getLastName() ?? ""),
                     ],
                   ),
-                  const Text('04.93.59.89.68'),
-                  const Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ipsum a arcu cursus vitae congue mauris rhoncus. Malesuada bibendum arcu vitae elementum curabitur. Magna fermentum iaculis eu non. Pellentesque nec nam aliquam sem et tortor consequat. Congue mauris rhoncus aenean vel elit scelerisque mauris. Fames ac turpis egestas integer eget aliquet nibh praesent tristique. Purus non enim praesent elementum.'),
+                  Text(widget.profile.getTelephone() ?? "no number"),
+                  Text(widget.profile.getDescription() ?? "no description"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [

@@ -1,3 +1,4 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:epi_flutter_1/widgets/button_default_widget.dart';
 import 'package:epi_flutter_1/widgets/new_form_widget.dart';
 import 'package:epi_flutter_1/widgets/round_image.dart';
@@ -14,6 +15,10 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   late final tmpFinal;
   String? imagePath;
+  final myControllerName = TextEditingController();
+  final myControllerLastName = TextEditingController();
+  final myControllerDescription = TextEditingController();
+  final myControllerNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +46,16 @@ class _FormPageState extends State<FormPage> {
                   ButtonDefaultWidget(text: 'Take a picture', onPressed: () async {
                     tmpFinal = await Navigator.of(context).pushNamed("/takePicture");
                     imagePath = tmpFinal;
-                    print(imagePath);
                     (context as Element).reassemble();
                   }),
                   Row(
-                    children: const <Widget> [
-                      Expanded(child: NewForm(name: 'First Name')),
-                      Expanded(child: NewForm(name: 'Last Name')),
+                    children: <Widget> [
+                      Expanded(child: NewForm(name: 'First Name', myController: myControllerName,)),
+                      Expanded(child: NewForm(name: 'Last Name', myController: myControllerLastName)),
                     ],
                   ),
-                  const NewForm(name: 'Number'),
-                  const NewForm(name: 'About', maxLines: 5),
+                  NewForm(name: 'Number', myController: myControllerDescription),
+                  NewForm(name: 'About', maxLines: 5, myController: myControllerNumber),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [
@@ -59,7 +63,7 @@ class _FormPageState extends State<FormPage> {
                         Navigator.of(context).pop();
                       }),
                       ButtonDefaultWidget(text: 'Save', onPressed: (){
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pop(DataProfile(myControllerLastName.text, myControllerName.text, myControllerDescription.text, myControllerNumber.text, imagePath));
                       }),
                     ],
                   ),

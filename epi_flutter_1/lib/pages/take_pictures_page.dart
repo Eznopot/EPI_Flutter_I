@@ -4,8 +4,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'display_picture_page.dart';
-
 class TakePicturePage extends StatefulWidget {
 
   @override
@@ -78,6 +76,7 @@ class _TakePicturePage extends State<TakePicturePage> {
     final result = await Navigator.of(context).pushNamed(
       "/displayPicture", arguments : image.path
     );
+    
     if (result != null) {
       Navigator.pop(context, result);
     }
