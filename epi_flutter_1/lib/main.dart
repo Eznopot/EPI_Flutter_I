@@ -133,4 +133,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Future<String?> _readData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final name = prefs.getString("name");
+    if (name == null) {
+      return null;
+    }
+    return name;
+  }
+
 }

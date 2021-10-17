@@ -1,4 +1,3 @@
-import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:epi_flutter_1/widgets/button_default_widget.dart';
 import 'package:epi_flutter_1/widgets/new_form_widget.dart';
 import 'package:epi_flutter_1/widgets/round_image.dart';
@@ -34,7 +33,8 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+//                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget> [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   RoundImage(width: 200, height: 200, imageString: widget.profile.getImagePath() ?? "assets/images/blank-profile-picture.jpg", cached: widget.profile.getImagePath() != null ? true : false),
@@ -44,6 +44,31 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: <Widget> [
                       Text(widget.profile.getFirstName() ?? "M."),
                       Text(widget.profile.getLastName() ?? ""),
+                    children: <Widget> [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.blue,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Center(
+                          child: Text('First Name :\n\nMano'),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.blue,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Center(
+                          child: Text('Last Name :\n\nBaffie Riou'),
+                        ),
+                      ),
                     ],
                   ),
                   Text(widget.profile.getTelephone() ?? "no number"),
