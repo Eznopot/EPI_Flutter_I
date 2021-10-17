@@ -1,5 +1,5 @@
+import 'package:epi_flutter_1/models/data_profile.dart';
 import 'package:epi_flutter_1/widgets/button_default_widget.dart';
-import 'package:epi_flutter_1/widgets/new_form_widget.dart';
 import 'package:epi_flutter_1/widgets/round_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -42,9 +42,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [
-                      Text(widget.profile.getFirstName() ?? "M."),
-                      Text(widget.profile.getLastName() ?? ""),
-                    children: <Widget> [
                       Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
@@ -54,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Center(
-                          child: Text('First Name :\n\nMano'),
+                          child: Text('First Name :\n\n' + widget.profile.getLastName()!),
                         ),
                       ),
                       Container(
@@ -66,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Center(
-                          child: Text('Last Name :\n\nBaffie Riou'),
+                          child: Text('Last Name :\n\n' + widget.profile.getLastName()!),
                         ),
                       ),
                     ],
