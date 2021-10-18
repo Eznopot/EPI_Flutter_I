@@ -34,7 +34,7 @@ class DataProfile {
       parsedJson['lastName'] ?? "",
       parsedJson['telephone'] ?? "",
       parsedJson['description'] ?? "",
-      parsedJson['imagePath'] ?? "",
+      parsedJson['imagePath'],
     );
   }
 

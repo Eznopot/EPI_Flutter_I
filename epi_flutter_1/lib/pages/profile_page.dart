@@ -16,6 +16,11 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration (
@@ -32,6 +37,7 @@ class _ProfilePageState extends State<ProfilePage> {
             color: Colors.white,
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: Column(
 //                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Center(
-                          child: Text('First Name :\n\n' + widget.profile.getLastName()!),
+                          child: Text('First Name :\n\n' + widget.profile.getFirstName()!),
                         ),
                       ),
                       Container(
